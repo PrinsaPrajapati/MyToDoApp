@@ -2,18 +2,34 @@ package com.prinsa.springboot.MyToDoApp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
-public class ToDo {
 
+//Database (MySQL) 
+//Static List of todos => Database (H2, MySQL)
+
+//JPA
+//Bean -> Database Table
+
+@Entity(name="todo")
+public class Todo {
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
-	@Size(min=10, message="Enter atleast 10 characters")
+	@Size(min = 10, message = "Enter atleast 10 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
 
-	public ToDo(int id, String username, String description, LocalDate targetDate, boolean done) {
+	public Todo() {
+	}
+
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -24,7 +40,7 @@ public class ToDo {
 
 	@Override
 	public String toString() {
-		return "ToDo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
+		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
 				+ targetDate + ", done=" + done + "]";
 	}
 
